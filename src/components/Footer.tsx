@@ -38,12 +38,12 @@ const Footer = () => (
           <h4 className="font-bold mt-8 mb-6 text-base text-white">Socials</h4>
           <ul className="flex gap-3">
             <li>
-              <a href="#" aria-label="Instagram" className="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#E0aaff] hover:text-black hover:border-[#E0aaff] hover:-translate-y-1 transition-all duration-300">
+              <a href="https://www.instagram.com/fewpixels.in" aria-label="Instagram" className="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#E0aaff] hover:text-black hover:border-[#E0aaff] hover:-translate-y-1 transition-all duration-300">
                 <Instagram size={18} />
               </a>
             </li>
             <li>
-              <a href="#" aria-label="LinkedIn" className="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#E0aaff] hover:text-black hover:border-[#E0aaff] hover:-translate-y-1 transition-all duration-300">
+              <a href="https://www.linkedin.com/company/fewpixels" aria-label="LinkedIn" className="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#E0aaff] hover:text-black hover:border-[#E0aaff] hover:-translate-y-1 transition-all duration-300">
                 <Linkedin size={18} />
               </a>
             </li>
@@ -57,7 +57,7 @@ const Footer = () => (
               </a>
             </li>
             <li>
-              <a href="#" aria-label="Twitter" className="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#E0aaff] hover:text-black hover:border-[#E0aaff] hover:-translate-y-1 transition-all duration-300">
+              <a href="https://x.com/Fewpixels_in" aria-label="Twitter" className="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#E0aaff] hover:text-black hover:border-[#E0aaff] hover:-translate-y-1 transition-all duration-300">
                 <Twitter size={18} />
               </a>
             </li>

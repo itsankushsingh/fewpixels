@@ -56,14 +56,14 @@ const Stats = () => (
         <h3 className="text-xl font-bold text-white mb-3">Perfectly Formatted for Every Platform</h3>
         <p className="text-white/80 mb-8 font-medium leading-relaxed">Every edit is optimized for TikTok, Instagram Reels, and YouTube to ensure maximum visibility.</p>
         <div className="flex gap-4 text-gray-400">
-          <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center hover:bg-[#E0aaff] hover:text-black hover:border-[#E0aaff] transition-all duration-300 cursor-pointer"><Instagram size={22} /></div>
-          <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center hover:bg-[#E0aaff] hover:text-black hover:border-[#E0aaff] transition-all duration-300 cursor-pointer"><Linkedin size={22} /></div>
-          <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center hover:bg-[#E0aaff] hover:text-black hover:border-[#E0aaff] transition-all duration-300 cursor-pointer">
+          <a href="https://www.instagram.com/fewpixels.in"><div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center hover:bg-[#E0aaff] hover:text-black hover:border-[#E0aaff] transition-all duration-300 cursor-pointer"><Instagram size={22} /></div></a>
+          <a href="https://www.linkedin.com/company/fewpixels/"><div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center hover:bg-[#E0aaff] hover:text-black hover:border-[#E0aaff] transition-all duration-300 cursor-pointer"><Linkedin size={22} /></div></a>
+          <a href="https://wa.me/916399883376?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%20call%20with%20Few%20Pixels!"><div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center hover:bg-[#E0aaff] hover:text-black hover:border-[#E0aaff] transition-all duration-300 cursor-pointer">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
               <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.524 5.847L.057 23.944l6.304-1.465A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.359-.213-3.723.865.88-3.625-.234-.373A9.818 9.818 0 1112 21.818z"/>
             </svg>
-          </div>
+          </div></a>
         </div>
       </motion.div>
       <motion.div variants={fadeUp} className="bg-white/5 backdrop-blur-3xl shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] border border-white/10 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 rounded-3xl p-8 md:p-10 flex flex-col justify-center items-center text-center">

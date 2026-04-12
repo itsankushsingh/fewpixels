@@ -47,8 +47,7 @@ const Services = () => (
           <p className="text-gray-400 font-medium leading-relaxed max-w-xl">One video, 10 pieces of content — cut into Shorts, Reels, quote cards, and teasers. Perfect for creators who want to stay visible everywhere.</p>
         </div>
         <div className="relative z-10 flex gap-3 md:flex-col">
-          <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-gray-400 group-hover:bg-[#E0aaff] group-hover:text-black group-hover:border-[#E0aaff] transition-all duration-300"><Instagram size={20} /></div>
-          <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-gray-400 group-hover:bg-[#E0aaff] group-hover:text-black group-hover:border-[#E0aaff] transition-all duration-300"><Youtube size={20} /></div>
+          <a href="https://www.instagram.com/fewpixels.in"><div className="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-gray-400 group-hover:bg-[#E0aaff] group-hover:text-black group-hover:border-[#E0aaff] transition-all duration-300"><Instagram size={20} /></div></a>
         </div>
       </motion.div>
     </motion.div>

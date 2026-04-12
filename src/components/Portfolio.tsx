@@ -8,7 +8,7 @@ const ALL_VIDEOS = [
   {
     id: 1,
     src: 'https://res.cloudinary.com/dv5bkqejl/video/upload/Ahmed_Video_21_jiiqyc.mp4',
-    label: 'Brand Story',
+    label: 'GYM Reel',
     aspect: 'portrait' as const,
   },
   {
@@ -26,7 +26,7 @@ const ALL_VIDEOS = [
   {
     id: 4,
     src: 'https://res.cloudinary.com/dv5bkqejl/video/upload/Ahmed_Video_20_cuqkpx.mp4',
-    label: 'Creator Reel',
+    label: 'GYM Reel',
     aspect: 'portrait' as const,
   },
 ];

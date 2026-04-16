@@ -76,6 +76,11 @@ const PixelForgeElement: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const idleRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [idle, setIdle] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches));
+  }, []);
 
   // Raw mouse position relative to element center (-1 → 1)
   const rawX = useMotionValue(0);
@@ -169,40 +174,42 @@ const PixelForgeElement: React.FC = () => {
         />
 
         {/* ── Layer 0 – dynamic dot grid (deepest) ─────── */}
-        <motion.div
-          className="absolute inset-0 pointer-events-none"
-          style={{ x: px2, y: py2 }}
-        >
-          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            {Array.from({ length: GRID_ROWS }, (_, r) =>
-              Array.from({ length: GRID_COLS }, (_, c) => {
-                const gx = (c / (GRID_COLS - 1)) * 100;
-                const gy = (r / (GRID_ROWS - 1)) * 100;
-                const glowing = (r + c) % 5 === 0;
-                return (
-                  <motion.circle
-                    key={`${r}-${c}`}
-                    cx={`${gx}%`}
-                    cy={`${gy}%`}
-                    r={glowing ? 2.5 : 1.5}
-                    fill={glowing ? '#E0aaff' : 'rgba(255,255,255,0.25)'}
-                    animate={
-                      glowing
-                        ? { opacity: [0.4, 1, 0.4], r: [2, 3.5, 2] }
-                        : { opacity: [0.15, 0.4, 0.15] }
-                    }
-                    transition={{
-                      duration: 2.5 + seeded(r * 12 + c, 2),
-                      repeat: Infinity,
-                      delay: seeded(r * 12 + c + 1, 3),
-                      ease: 'easeInOut',
-                    }}
-                  />
-                );
-              })
-            )}
-          </svg>
-        </motion.div>
+        {!isMobile && (
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            style={{ x: px2, y: py2 }}
+          >
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+              {Array.from({ length: GRID_ROWS }, (_, r) =>
+                Array.from({ length: GRID_COLS }, (_, c) => {
+                  const gx = (c / (GRID_COLS - 1)) * 100;
+                  const gy = (r / (GRID_ROWS - 1)) * 100;
+                  const glowing = (r + c) % 5 === 0;
+                  return (
+                    <motion.circle
+                      key={`${r}-${c}`}
+                      cx={`${gx}%`}
+                      cy={`${gy}%`}
+                      r={glowing ? 2.5 : 1.5}
+                      fill={glowing ? '#E0aaff' : 'rgba(255,255,255,0.25)'}
+                      animate={
+                        glowing
+                          ? { opacity: [0.4, 1, 0.4], r: [2, 3.5, 2] }
+                          : { opacity: [0.15, 0.4, 0.15] }
+                      }
+                      transition={{
+                        duration: 2.5 + seeded(r * 12 + c, 2),
+                        repeat: Infinity,
+                        delay: seeded(r * 12 + c + 1, 3),
+                        ease: 'easeInOut',
+                      }}
+                    />
+                  );
+                })
+              )}
+            </svg>
+          </motion.div>
+        )}
 
         {/* ── Layer 1A – Preview panel (mid-left) ─────── */}
         <motion.div
@@ -407,38 +414,40 @@ const PixelForgeElement: React.FC = () => {
       </motion.div>
 
       {/* ──── Floating particles orbiting outside card ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {PARTICLES.map((p) => (
-          <motion.div
-            key={p.id}
-            className="absolute rounded-full"
-            style={{
-              left: `${p.x}%`,
-              top: `${p.y}%`,
-              width: p.size,
-              height: p.size,
-              background: colorMap[p.color],
-              opacity: p.opacity,
-              boxShadow:
-                p.color === 'purple'
-                  ? `0 0 ${p.size * 3}px ${p.size}px rgba(224,170,255,0.4)`
-                  : 'none',
-            }}
-            animate={{
-              y: [0, -(p.size * 8), 0],
-              x: [0, p.size * 3 * (p.id % 2 === 0 ? 1 : -1), 0],
-              opacity: [p.opacity, p.opacity * 1.8, p.opacity],
-              scale: [1, 1.4, 1],
-            }}
-            transition={{
-              duration: p.duration,
-              repeat: Infinity,
-              delay: p.delay,
-              ease: 'easeInOut',
-            }}
-          />
-        ))}
-      </div>
+      {!isMobile && (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {PARTICLES.map((p) => (
+            <motion.div
+              key={p.id}
+              className="absolute rounded-full"
+              style={{
+                left: `${p.x}%`,
+                top: `${p.y}%`,
+                width: p.size,
+                height: p.size,
+                background: colorMap[p.color],
+                opacity: p.opacity,
+                boxShadow:
+                  p.color === 'purple'
+                    ? `0 0 ${p.size * 3}px ${p.size}px rgba(224,170,255,0.4)`
+                    : 'none',
+              }}
+              animate={{
+                y: [0, -(p.size * 8), 0],
+                x: [0, p.size * 3 * (p.id % 2 === 0 ? 1 : -1), 0],
+                opacity: [p.opacity, p.opacity * 1.8, p.opacity],
+                scale: [1, 1.4, 1],
+              }}
+              transition={{
+                duration: p.duration,
+                repeat: Infinity,
+                delay: p.delay,
+                ease: 'easeInOut',
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       {/* ──── Reflection beneath card ───────────────────── */}
       <div

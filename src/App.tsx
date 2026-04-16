@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import InteractiveBackground from './components/InteractiveBackground';
 import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Features from './components/Features';
-import PainPoints from './components/PainPoints';
-import Services from './components/Services';
-import Portfolio from './components/Portfolio';
-import Stats from './components/Stats';
-import Workflow from './components/Workflow';
-import Testimonials from './components/Testimonials';
 
-import FAQ from './components/FAQ';
-import FooterCTA from './components/FooterCTA';
-import Footer from './components/Footer';
-import ScrollToTop from './components/ScrollToTop';
+const Features = lazy(() => import('./components/Features'));
+const PainPoints = lazy(() => import('./components/PainPoints'));
+const Services = lazy(() => import('./components/Services'));
+const Portfolio = lazy(() => import('./components/Portfolio'));
+const Stats = lazy(() => import('./components/Stats'));
+const Workflow = lazy(() => import('./components/Workflow'));
+const Testimonials = lazy(() => import('./components/Testimonials'));
+const FAQ = lazy(() => import('./components/FAQ'));
+const FooterCTA = lazy(() => import('./components/FooterCTA'));
+const Footer = lazy(() => import('./components/Footer'));
+const ScrollToTop = lazy(() => import('./components/ScrollToTop'));
 
 export default function App() {
   return (
@@ -24,19 +24,22 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <Features />
-        <PainPoints />
-        <Services />
-        <Portfolio />
-        <Stats />
-        <Workflow />
-        <Testimonials />
-
-        <FAQ />
-        <FooterCTA />
+        <Suspense fallback={<div className="min-h-[50vh]"></div>}>
+          <Features />
+          <PainPoints />
+          <Services />
+          <Portfolio />
+          <Stats />
+          <Workflow />
+          <Testimonials />
+          <FAQ />
+          <FooterCTA />
+        </Suspense>
       </main>
-      <Footer />
-      <ScrollToTop />
+      <Suspense fallback={<div className="min-h-[10vh]"></div>}>
+        <Footer />
+        <ScrollToTop />
+      </Suspense>
     </div>
   );
 }

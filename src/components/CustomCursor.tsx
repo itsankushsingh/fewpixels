@@ -10,6 +10,11 @@ const CustomCursor: React.FC = () => {
   const [label, setLabel] = useState('');
   const clickRippleKey = useRef(0);
   const [rippleVisible, setRippleVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile('ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches);
+  }, []);
 
   const rawX = useMotionValue(-200);
   const rawY = useMotionValue(-200);
@@ -23,6 +28,7 @@ const CustomCursor: React.FC = () => {
   const ringY = useSpring(rawY, springSlow);
 
   useEffect(() => {
+    if (isMobile) return;
     // Force cursor: none on every interactive element globally
     const style = document.createElement('style');
     style.id = 'cursor-none-override';
@@ -35,7 +41,7 @@ const CustomCursor: React.FC = () => {
     return () => {
       document.getElementById('cursor-none-override')?.remove();
     };
-  }, []);
+  }, [isMobile]);
 
   const detectTarget = useCallback((e: MouseEvent) => {
     rawX.set(e.clientX);
@@ -61,6 +67,8 @@ const CustomCursor: React.FC = () => {
   }, [rawX, rawY, visible]);
 
   useEffect(() => {
+    if (isMobile) return;
+
     const onDown = () => {
       setClicking(true);
       setRippleVisible(false);
@@ -83,12 +91,14 @@ const CustomCursor: React.FC = () => {
       document.removeEventListener('mouseleave', onLeave);
       document.removeEventListener('mouseenter', onEnter);
     };
-  }, [detectTarget]);
+  }, [detectTarget, isMobile]);
 
   const isPointer = mode === 'pointer';
   const isText    = mode === 'text';
   const ringSize  = clicking ? 22 : isPointer ? 52 : 34;
   const ringColor = isPointer ? '#E0aaff' : 'rgba(224,170,255,0.45)';
+
+  if (isMobile) return null;
 
   return (
     <>

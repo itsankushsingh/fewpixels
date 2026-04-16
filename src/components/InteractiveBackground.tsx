@@ -2,6 +2,12 @@ import React, { useEffect } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 
 const InteractiveBackground = () => {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  useEffect(() => {
+    setIsMobile(typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches));
+  }, []);
+
   const cursorX = useMotionValue(typeof window !== 'undefined' ? window.innerWidth / 2 : 0);
   const cursorY = useMotionValue(typeof window !== 'undefined' ? window.innerHeight / 2 : 0);
 
@@ -41,26 +47,44 @@ const InteractiveBackground = () => {
 
       {/* Random ambient orb 1 */}
       <motion.div
-        animate={{
-          x: [0, 400, -200, 0],
-          y: [0, -300, 300, 0],
-          scale: [1, 1.2, 0.8, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        animate={
+          isMobile
+            ? {
+                x: [0, 100, -80, 0],
+                y: [0, -80, 100, 0],
+                opacity: [0.3, 0.4, 0.3],
+              }
+            : {
+                x: [0, 400, -200, 0],
+                y: [0, -300, 300, 0],
+                scale: [1, 1.2, 0.8, 1],
+                opacity: [0.3, 0.5, 0.3],
+              }
+        }
+        transition={{ duration: isMobile ? 35 : 20, repeat: Infinity, ease: 'linear' }}
         className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-[#8a2be2]/10 blur-[150px]"
+        style={isMobile ? { opacity: 0.4 } : {}}
       />
 
       {/* Random ambient orb 2 */}
       <motion.div
-        animate={{
-          x: [0, -400, 300, 0],
-          y: [0, 400, -200, 0],
-          scale: [1, 0.9, 1.3, 1],
-          opacity: [0.2, 0.4, 0.2],
-        }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear", delay: 2 }}
+        animate={
+          isMobile
+            ? {
+                x: [0, -80, 100, 0],
+                y: [0, 100, -80, 0],
+                opacity: [0.2, 0.3, 0.2],
+              }
+            : {
+                x: [0, -400, 300, 0],
+                y: [0, 400, -200, 0],
+                scale: [1, 0.9, 1.3, 1],
+                opacity: [0.2, 0.4, 0.2],
+              }
+        }
+        transition={{ duration: isMobile ? 40 : 25, repeat: Infinity, ease: 'linear', delay: 2 }}
         className="absolute bottom-1/4 right-1/4 w-[700px] h-[700px] rounded-full bg-[#E0aaff]/10 blur-[150px]"
+        style={isMobile ? { opacity: 0.3 } : {}}
       />
     </div>
   );
